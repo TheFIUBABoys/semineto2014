@@ -1,0 +1,9 @@
+/* MODALS */
+textarea {
+	resize: none;
+    height: 5rem;
+}
+
+.close-reveal-modal {
+	font-size: 1.5rem;
+}

@@ -1,0 +1,27 @@
+/* LANDING PAGE */
+.landing-image-container {
+	width: 100%;
+	position: relative;
+}
+
+.landing-image-container img {
+	width: 100%;
+}
+
+.img-caption {
+	position: absolute;
+	top: 20%;
+	left: 0;
+	width: 100%;
+	padding: 2rem;
+	background-color: rgba(0,0,0,0.7);
+}
+
+.img-caption > h1 {
+	color: rgb(236, 236, 236);
+}
+
+.img-caption > p {
+	color: rgb(200, 200, 200);
+	font-style: italic;
+}
