@@ -23,7 +23,7 @@
     <div class="columns small-6">
         <g:each in="${positiveTweets}" status="i" var="tweet">
             <div class="panel">
-                <h5>@${tweet.user.screenName} <small>${tweet.user.name}</small></h5>
+                <a href="http://www.twitter.com/${tweet.user.screenName}">@${tweet.user.screenName}</a> <small>${tweet.user.name}</small>
                 <p>${tweet.text}</p>
             </div>
         </g:each>
@@ -31,7 +31,7 @@
     <div class="columns small-6">
         <g:each in="${negativeTweets}" status="i" var="tweet">
             <div class="panel">
-                <h5>@${tweet.user.screenName} <small>${tweet.user.name}</small></h5>
+                <a href="http://www.twitter.com/${tweet.user.screenName}">@${tweet.user.screenName}</a> <small>${tweet.user.name}</small>
                 <p>${tweet.text}</p>
             </div>
         </g:each>
