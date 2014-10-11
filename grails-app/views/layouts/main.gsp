@@ -22,8 +22,9 @@
 
     <script src="${resource(dir: 'js', file: 'vendor/modernizr.js')}"></script>
     <g:layoutHead/>
-    <r:layoutResources />
+    <r:layoutResources/>
 </head>
+
 <body>
 
 <!-- Top navigation bar -->
@@ -53,13 +54,16 @@
         <!-- Left Nav Section -->
         <ul class="left">
             <li>
-                <a href="/views/status.html">Estado <i class="step fi-marker"></i></a>
+                <a href="#">Estado <i class="step fi-marker"></i></a>
             </li>
             <li>
                 <a href="#" data-reveal-id="new-prediction">Aportar <i class="step fi-megaphone"></i></a>
             </li>
             <li>
                 <a href="#">Favoritos <i class="step fi-heart"></i></a>
+            </li>
+            <li>
+                <a href="tweets">Lista de tweets</a>
             </li>
         </ul>
     </section>
@@ -70,8 +74,10 @@
 <!-- CSS: partials/modals.css -->
 <div id="new-prediction" class="reveal-modal" data-reveal>
     <a class="close-reveal-modal">&#215;</a>
+
     <h3>Prediccion de estado</h3>
     <hr>
+
     <form>
         <div class="row">
             <!-- Transport type -->
@@ -103,6 +109,7 @@
                 </label>
             </div>
         </div>
+
         <div class="row">
             <div class="large-12 columns">
                 <label>Comentario
@@ -117,7 +124,7 @@
 
 <g:javascript library="application"/>
 
-<r:layoutResources />
+<r:layoutResources/>
 <script src="${resource(dir: 'js', file: 'vendor/jquery.js')}"></script>
 <script src="${resource(dir: 'js', file: 'foundation.min.js')}"></script>
 <script>
