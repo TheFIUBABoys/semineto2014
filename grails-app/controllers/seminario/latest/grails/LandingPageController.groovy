@@ -21,26 +21,38 @@ class LandingPageController {
     def index() {}
 
     def tweets() {
-        def query = new Query("tren tigre +exclude:retweets");
-        query.setCount(100);
-        def result = twitter4jService.search(query);
+        def query = new Query("tren tigre +exclude:retweets")
+        query.setCount(100)
+        def result = twitter4jService.search(query)
 
         def tweets = result.getTweets()
-        def positiveTweets = tweets.findAll { tweet ->
-            def score = downKeywords.keySet().inject(0) { acc, key ->
-                if (tweet.text.count(key) > 0) acc + downKeywords[key]
-                else acc
-            }
-            if (score >= 0.5) true
-        }
-        def negativeTweets = tweets.findAll { tweet ->
-            def score = upKeywords.keySet().inject(0) { acc, key ->
-                if (tweet.text.count(key) > 0) acc + upKeywords[key]
-                else acc
-            }
-            if (score >= 0.2) true
-        }
 
-        [positiveTweets: positiveTweets, negativeTweets: negativeTweets]
+        [positiveTweets: positiveTweets(tweets), negativeTweets: negativeTweets(tweets)]
+    }
+
+    private ArrayList negativeTweets(tweets) {
+        tweets.findAll { tweet ->
+            if (negativeScore(tweet) >= 0.2) true
+        }
+    }
+
+    private ArrayList positiveTweets(tweets) {
+        tweets.findAll { tweet ->
+            if (positiveScore(tweet) >= 0.5) true
+        }
+    }
+
+    private positiveScore(tweet) {
+        upKeywords.keySet().inject(0) { acc, key ->
+            if (tweet.text.count(key) > 0) acc + upKeywords[key]
+            else acc
+        }
+    }
+
+    private negativeScore(tweet) {
+        downKeywords.keySet().inject(0) { acc, key ->
+            if (tweet.text.count(key) > 0) acc + downKeywords[key]
+            else acc
+        }
     }
 }
