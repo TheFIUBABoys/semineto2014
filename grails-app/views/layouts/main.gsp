@@ -63,7 +63,7 @@
                 <a href="#">Favoritos <i class="step fi-heart"></i></a>
             </li>
             <li>
-                <a href="tweets">Lista de tweets</a>
+                <a href="landingPage/tweets">Lista de tweets</a>
             </li>
         </ul>
     </section>
