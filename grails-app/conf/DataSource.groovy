@@ -1,5 +1,5 @@
 dataSource {
-    pooled = true
+    pooled = false
     jmxExport = true
     driverClassName = "org.h2.Driver"
     username = "sa"
