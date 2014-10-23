@@ -8,12 +8,11 @@ class StatusClassifier {
         this.stategy = stategy
     }
 
-    def classify () {
-        // What are we classifing.
-        // Probably we are going to need a list of Updates
-        stategy.classify()
+    def classify (List<StatusUpdate> statusUpdates) {
+        stategy.classify(statusUpdates)
     }
 
     static constraints = {
     }
+
 }

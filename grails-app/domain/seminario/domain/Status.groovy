@@ -3,14 +3,15 @@ package seminario.domain
 class Status {
 
     Integer accuracy
-    String statusString
+    String prediction
 
-    Status(Integer accuracy, String statusString) {
+    Status(Integer accuracy, String prediction) {
         this.accuracy = accuracy
-        this.statusString = statusString
+        this.prediction = prediction
     }
 
     static constraints = {
-        statusString(blank: false)
+        prediction(blank: false)
     }
+
 }
