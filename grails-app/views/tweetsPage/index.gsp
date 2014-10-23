@@ -24,6 +24,8 @@
         <g:each in="${positiveTweets}" status="i" var="tweet">
             <div class="panel">
                 <a href="http://www.twitter.com/${tweet.user.screenName}">@${tweet.user.screenName}</a> <small>${tweet.user.name}</small>
+                <br>
+                <small style="color:rgb(128, 124, 124)">${tweet.createdAt}</small>
                 <p>${tweet.text}</p>
             </div>
         </g:each>
@@ -32,6 +34,8 @@
         <g:each in="${negativeTweets}" status="i" var="tweet">
             <div class="panel">
                 <a href="http://www.twitter.com/${tweet.user.screenName}">@${tweet.user.screenName}</a> <small>${tweet.user.name}</small>
+                <br>
+                <small style="color:rgb(128, 124, 124)">${tweet.createdAt}</small>
                 <p>${tweet.text}</p>
             </div>
         </g:each>
