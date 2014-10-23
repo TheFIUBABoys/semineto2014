@@ -33,7 +33,7 @@
     <ul class="title-area">
         <li class="name">
             <h1>
-                <a href="<g:createLink controller="landingPage"/>">Este Sale?</a>
+                <a href="<g:createLink url="landingPage"/>">Este Sale?</a>
             </h1>
         </li>
         <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
