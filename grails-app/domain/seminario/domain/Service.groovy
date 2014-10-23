@@ -22,4 +22,5 @@ class Service {
     static constraints = {
         name(blank: false)
     }
+
 }

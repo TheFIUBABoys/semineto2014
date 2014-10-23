@@ -4,10 +4,15 @@ class StatusUpdate {
 
     String sourceType
     String sourceUrl
-    Date retrieveTime
+    Date createdAt
     String body
-    //User user
+//    User user
 
     static constraints = {
+        sourceType(blank: false)
+        createdAt(blank: false)
+        body(blank: false)
+//        User(blank: false)
     }
+
 }
