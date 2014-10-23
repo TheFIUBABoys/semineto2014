@@ -7,7 +7,9 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/index")
+//        "/"(view:"/index")
+        "/"(view:"landingPage/index")
+//        "grails-config"(view:"/index")
         "500"(view:'/error')
 	}
 }

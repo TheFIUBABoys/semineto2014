@@ -1,3 +1,4 @@
+<%@ page import="com.seminario.AuthController" %>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -41,6 +42,19 @@
     <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
+            <shiro:isLoggedIn>
+                <li>
+                    <div class="user-welcome">Welcome, <span class="username"><shiro:principal/></span></div>
+                </li>
+            </shiro:isLoggedIn>
+            <li>
+                <shiro:isLoggedIn>
+                    <g:link controller="auth" action="signOut">Logout</g:link>
+                </shiro:isLoggedIn>
+                <shiro:isNotLoggedIn>
+                    <g:link controller="auth" action="index">Login</g:link>
+                </shiro:isNotLoggedIn>
+            </li>
             <li class="active"><a href="#">Feedback</a></li>
             <li class="has-dropdown">
                 <a href="#">About Us <i class="step fi-info"></i></a>
