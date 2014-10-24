@@ -33,7 +33,7 @@
     <ul class="title-area">
         <li class="name">
             <h1>
-                <a href="<g:createLink url="landingPage"/>">Este Sale?</a>
+                <a href="<g:createLink controller="landingPage"/>">Este Sale?</a>
             </h1>
         </li>
         <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -47,6 +47,11 @@
                     <div class="user-welcome">Welcome, <span class="username"><shiro:principal/></span></div>
                 </li>
             </shiro:isLoggedIn>
+            <shiro:isNotLoggedIn>
+                <li>
+                    <g:link controller="auth" action="register">SignUp</g:link>
+                </li>
+            </shiro:isNotLoggedIn>
             <li>
                 <shiro:isLoggedIn>
                     <g:link controller="auth" action="signOut">Logout</g:link>

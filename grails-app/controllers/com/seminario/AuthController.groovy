@@ -1,8 +1,10 @@
 package com.seminario
 
+import org.apache.catalina.security.SecurityUtil
 import org.apache.shiro.SecurityUtils
 import org.apache.shiro.authc.AuthenticationException
 import org.apache.shiro.authc.UsernamePasswordToken
+import org.apache.shiro.crypto.hash.Sha256Hash
 import org.apache.shiro.web.util.SavedRequest
 import org.apache.shiro.web.util.WebUtils
 
@@ -13,6 +15,10 @@ class AuthController {
 
     def login = {
         return [ username: params.username, rememberMe: (params.rememberMe != null), targetUri: params.targetUri ]
+    }
+
+    def register = {
+        return [ username: params.username, targetUri: params.targetUri ]
     }
 
     def signIn = {
@@ -63,6 +69,27 @@ class AuthController {
 
             // Now redirect back to the login page.
             redirect(action: "login", params: m)
+        }
+    }
+
+    def signUp = {
+        try {
+            User newUser = new User(params.username, new Sha256Hash(params.password).toHex())
+            newUser.save()
+
+            signIn(params);
+        } catch (Exception e) {
+            log.info "SignUp failure for username '${params.username}'."
+            flash.message = message(code: "login.failed")
+            def m = [ username: params.username ]
+
+            // Remember the target URI too.
+            if (params.targetUri) {
+                m["targetUri"] = params.targetUri
+            }
+
+            // Now redirect back to the login page.
+            redirect(action: "register", params: m)
         }
     }
 

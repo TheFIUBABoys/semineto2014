@@ -12,18 +12,25 @@ class TweetsPageController {
             "parado"  : 0.4,
             "demorado": 0.2,
             "mierda": 1.0,
+            "choto": 1.0,
+            "te odio": 1.0,
             "tarde":0.4,
             "lleno":0.2
     ]
     def upKeywords = [
             "en horario": 0.5,
+            "bien": 0.3,
+            "perfecto": 0.5,
+            "rapido": 0.3,
+            "te amo": 1.0,
             "saliendo"  : 0.2,
             "viajando"  : 0.4,
+            "no me puedo quejar"  : 1.0,
             "llegando"  : 0.3
     ]
 
     def index() {
-        def query = new Query("tren tigre +exclude:retweets")
+        def query = new Query("#TrenTigre +exclude:retweets")
         query.setCount(100)
         def result = twitter4jService.search(query)
 
@@ -49,14 +56,14 @@ class TweetsPageController {
 
     private positiveScore(tweet) {
         upKeywords.keySet().inject(0) { acc, key ->
-            if (tweet.text.count(key) > 0) acc + upKeywords[key]
+            if (tweet.text.toLowerCase().count(key) > 0) acc + upKeywords[key]
             else acc
         }
     }
 
     private negativeScore(tweet) {
         downKeywords.keySet().inject(0) { acc, key ->
-            if (tweet.text.count(key) > 0) acc + downKeywords[key]
+            if (tweet.text.toLowerCase().count(key) > 0) acc + downKeywords[key]
             else acc
         }
     }

@@ -10,17 +10,18 @@
     <div class="columns">
         <g:if test="${positiveTweets.size > negativeTweets.size}">
             <div class="alert-box success">
-                <i class="fi-arrow-up"> UP</i>
+                <i class="fi-arrow-up"> SALE :)</i>
             </div>
         </g:if>
         <g:if test="${negativeTweets.size >= positiveTweets.size}">
             <div class="alert-box warning">
-                <i class="fi-arrow-down"> DOWN</i>
+                <i class="fi-arrow-down"> NO SALE :(</i>
             </div>
         </g:if>
     </div>
 
     <div class="columns small-6">
+        <div class="column-label">Positivo</div>
         <g:each in="${positiveTweets}" status="i" var="tweet">
             <div class="panel">
                 <a href="http://www.twitter.com/${tweet.user.screenName}">@${tweet.user.screenName}</a> <small>${tweet.user.name}</small>
@@ -31,6 +32,7 @@
         </g:each>
     </div>
     <div class="columns small-6">
+        <div class="column-label">Negativo</div>
         <g:each in="${negativeTweets}" status="i" var="tweet">
             <div class="panel">
                 <a href="http://www.twitter.com/${tweet.user.screenName}">@${tweet.user.screenName}</a> <small>${tweet.user.name}</small>
