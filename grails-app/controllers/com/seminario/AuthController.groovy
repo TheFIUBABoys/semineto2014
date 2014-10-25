@@ -11,6 +11,7 @@ import org.apache.shiro.web.util.WebUtils
 
 class AuthController {
     def shiroSecurityManager
+    def authService
 
     def index = { redirect(action: "login", params: params) }
 
@@ -30,8 +31,10 @@ class AuthController {
             authToken.rememberMe = true
         }
         
-        // If a controller redirected to this page, redirect back
-        // to it. Otherwise redirect to the root URI.
+        /*
+            If a controller redirected to this page, redirect back
+            to it. Otherwise redirect to the root URI.
+        */
         def targetUri = params.targetUri ?: "/"
         
         // Handle requests saved by Shiro filters.
@@ -42,22 +45,17 @@ class AuthController {
         }
         
         try{
-            // Perform the actual login. An AuthenticationException
-            // will be thrown if the username is unrecognised or the
-            // password is incorrect.
+            // Perform the actual login.
             SecurityUtils.subject.login(authToken)
-
             log.info "Redirecting to '${targetUri}'."
             redirect(uri: targetUri)
         }
         catch (AuthenticationException ex){
-            // Authentication failed, so display the appropriate message
-            // on the login page.
+            // Authentication failed
             log.info "Authentication failure for user '${params.username}'."
             flash.message = message(code: "login.failed")
 
-            // Keep the username and "remember me" setting so that the
-            // user doesn't have to enter them again.
+            // Keep the username and "remember me" setting
             def m = [ username: params.username ]
             if (params.rememberMe) {
                 m["rememberMe"] = true
@@ -74,17 +72,11 @@ class AuthController {
     }
 
 
-    //All methods accessing db should be @Transactional as rule of thumb
-    @Transactional
-    def createUser(params){
-        User newUser = new User(params.username, new Sha256Hash(params.password).toHex())
-        newUser.addToPermissions("*:*")
-        newUser.save()
-    }
+
 
     def signUp = {
         try {
-            createUser(params)
+            authService.createUser(params)
             signIn(params);
         } catch (Exception e) {
             log.info "SignUp failure for username '${params.username}'."
