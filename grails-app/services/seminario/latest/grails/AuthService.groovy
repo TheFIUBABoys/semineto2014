@@ -7,8 +7,8 @@ import org.apache.shiro.crypto.hash.Sha256Hash
 @Transactional
 class AuthService {
 
-    def createUser(params){
-        User newUser = new User(params.username, new Sha256Hash(params.password).toHex())
+    def createUser(String username, String password){
+        User newUser = new User(username, new Sha256Hash(password).toHex())
         newUser.addToPermissions("*:*")
         newUser.save()
     }

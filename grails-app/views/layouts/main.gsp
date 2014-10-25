@@ -84,6 +84,10 @@
             <li>
                 <a href="<g:createLink controller="tweetsPage"/>">Lista de tweets</a>
             </li>
+            <li>
+                <g:link controller="informationChannel" action="show"
+                        params="[keywords:['#TrenTigre', 'tren tigre']]">Show channel</g:link>
+            </li>
         </ul>
     </section>
 </nav>

@@ -1,11 +1,8 @@
 package com.seminario
 
-import grails.transaction.Transactional
-import org.apache.catalina.security.SecurityUtil
 import org.apache.shiro.SecurityUtils
 import org.apache.shiro.authc.AuthenticationException
 import org.apache.shiro.authc.UsernamePasswordToken
-import org.apache.shiro.crypto.hash.Sha256Hash
 import org.apache.shiro.web.util.SavedRequest
 import org.apache.shiro.web.util.WebUtils
 
@@ -16,11 +13,11 @@ class AuthController {
     def index = { redirect(action: "login", params: params) }
 
     def login = {
-        return [ username: params.username, rememberMe: (params.rememberMe != null), targetUri: params.targetUri ]
+        return [username: params.username, rememberMe: (params.rememberMe != null), targetUri: params.targetUri]
     }
 
     def register = {
-        return [ username: params.username, targetUri: params.targetUri ]
+        return [username: params.username, targetUri: params.targetUri]
     }
 
     def signIn = {
@@ -30,33 +27,33 @@ class AuthController {
         if (params.rememberMe) {
             authToken.rememberMe = true
         }
-        
+
         /*
             If a controller redirected to this page, redirect back
             to it. Otherwise redirect to the root URI.
         */
         def targetUri = params.targetUri ?: "/"
-        
+
         // Handle requests saved by Shiro filters.
         SavedRequest savedRequest = WebUtils.getSavedRequest(request)
         if (savedRequest) {
             targetUri = savedRequest.requestURI - request.contextPath
             if (savedRequest.queryString) targetUri = targetUri + '?' + savedRequest.queryString
         }
-        
-        try{
+
+        try {
             // Perform the actual login.
             SecurityUtils.subject.login(authToken)
             log.info "Redirecting to '${targetUri}'."
             redirect(uri: targetUri)
         }
-        catch (AuthenticationException ex){
+        catch (AuthenticationException ex) {
             // Authentication failed
             log.info "Authentication failure for user '${params.username}'."
             flash.message = message(code: "login.failed")
 
             // Keep the username and "remember me" setting
-            def m = [ username: params.username ]
+            def m = [username: params.username]
             if (params.rememberMe) {
                 m["rememberMe"] = true
             }
@@ -72,16 +69,14 @@ class AuthController {
     }
 
 
-
-
     def signUp = {
         try {
-            authService.createUser(params)
+            authService.createUser(params.username, params.password)
             signIn(params);
         } catch (Exception e) {
             log.info "SignUp failure for username '${params.username}'."
             flash.message = message(code: "login.failed")
-            def m = [ username: params.username ]
+            def m = [username: params.username]
 
             // Remember the target URI too.
             if (params.targetUri) {
