@@ -1,5 +1,6 @@
 package com.seminario
 
+import grails.transaction.Transactional
 import org.apache.catalina.security.SecurityUtil
 import org.apache.shiro.SecurityUtils
 import org.apache.shiro.authc.AuthenticationException
@@ -72,11 +73,18 @@ class AuthController {
         }
     }
 
+
+    //All methods accessing db should be @Transactional as rule of thumb
+    @Transactional
+    def createUser(params){
+        User newUser = new User(params.username, new Sha256Hash(params.password).toHex())
+        newUser.addToPermissions("*:*")
+        newUser.save()
+    }
+
     def signUp = {
         try {
-            User newUser = new User(params.username, new Sha256Hash(params.password).toHex())
-            newUser.save()
-
+            createUser(params)
             signIn(params);
         } catch (Exception e) {
             log.info "SignUp failure for username '${params.username}'."
