@@ -10,8 +10,8 @@ class Service {
         this.name = name
     }
 
-    def updateStatus (ServiceStatus newStatusUpdate) {
-        lastStatus = newStatusUpdate
+    def updateStatus (ServiceStatus serviceStatus) {
+        lastStatus = serviceStatus
         lastStatusTime = new Date()
     }
 

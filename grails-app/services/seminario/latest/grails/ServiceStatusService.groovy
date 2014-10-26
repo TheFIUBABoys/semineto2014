@@ -21,6 +21,7 @@ class ServiceStatusService {
 
         Status status = statusClassifierService.classify(statusUpdates)
         ServiceStatus serviceStatus = new ServiceStatus(service, status)
+        service.updateStatus(serviceStatus)
 
         // Save a new service status instead of updating the service's one to save
         // the service's history of status update in db.
