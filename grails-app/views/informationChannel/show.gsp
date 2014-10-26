@@ -1,27 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: fdv
-  Date: 10/25/14
-  Time: 18:01
---%>
-
-<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Information channel</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-    <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
-
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'foundation.css')}" type="text/css">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'foundation-icons.css')}" type="text/css">
-
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'partials/modals.css')}" type="text/css">
-
-    <script src="${resource(dir: 'js', file: 'vendor/modernizr.js')}"></script>
+    <meta name="layout" content="main">
 </head>
 
 <body>
@@ -35,7 +15,7 @@
     </h4>
 </div>
 
-<div class="columns small-6">
+<div class="columns small-6 small-centered">
     <g:each in="${tweets}" status="i" var="tweet">
         <div class="panel">
             <a href="http://www.twitter.com/${tweet.user.screenName}">

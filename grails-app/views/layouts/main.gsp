@@ -23,7 +23,6 @@
 
     <script src="${resource(dir: 'js', file: 'vendor/modernizr.js')}"></script>
     <g:layoutHead/>
-    <r:layoutResources/>
 </head>
 
 <body>
@@ -107,8 +106,8 @@
             <div class="small-6 large-4 columns">
                 <label>Para qué transporte?
                     <select>
-                        <option value="train">Tren</option>
-                        <option value="subway">Subte</option>
+                        <option value="tren">Tren</option>
+                        <option value="subte">Subte</option>
                     </select>
                 </label>
             </div>
@@ -116,8 +115,8 @@
             <div class="small-6 large-4 columns">
                 <label>Para qué línea?
                     <select>
-                        <option value="Mitre">Mitre</option>
-                        <option value="Belgrano Norte">Belgrano Norte</option>
+                        <option value="tigre">Tigre</option>
+                        <option value="mitre">Mitre</option>
                     </select>
                 </label>
             </div>
@@ -125,9 +124,8 @@
             <div class="small-6 large-4 columns">
                 <label>En qué estado está?
                     <select>
-                        <option value="delayed">Demorado</option>
-                        <option value="interrupted">Interrumpido</option>
-                        <option value="ok">Ok</option>
+                        <option value="down">Demorado/Interrumpido</option>
+                        <option value="up">Ok</option>
                     </select>
                 </label>
             </div>
@@ -143,11 +141,8 @@
     </form>
 </div>
 
-<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
-
 <g:javascript library="application"/>
 
-<r:layoutResources/>
 <script src="${resource(dir: 'js', file: 'vendor/jquery.js')}"></script>
 <script src="${resource(dir: 'js', file: 'foundation.min.js')}"></script>
 <script>
