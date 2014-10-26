@@ -6,14 +6,18 @@ class StatusUpdate {
 
     String sourceType
     String sourceUrl
-    Date createdAt
+    Date dateCreated
     String body
     Service service
     User user
 
+    StatusUpdate(String sourceType, String body) {
+        this.sourceType = sourceType
+        this.body = body
+    }
+
     static constraints = {
         sourceType(blank: false)
-        createdAt(blank: false)
         body(blank: false)
     }
 
