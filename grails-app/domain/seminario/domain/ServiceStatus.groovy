@@ -2,15 +2,12 @@ package seminario.domain
 
 class ServiceStatus {
 
-    StatusClassifier statusClassifier
+    Service service
+    Status status
 
-    ServiceStatus(StatusClassifier statusClassifier) {
-        this.statusClassifier = statusClassifier
-    }
-
-    def classifyUpdates (Date sinceDate) {
-        List<StatusUpdate> statusUpdates = StatusUpdate.findAllByCreatedAtGreaterThanEquals(sinceDate)
-        return statusClassifier.classify(statusUpdates)
+    ServiceStatus(Service service, Status status) {
+        this.service = service
+        this.status = status
     }
 
     static constraints = {

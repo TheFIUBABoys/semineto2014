@@ -1,6 +1,11 @@
-package seminario.domain
+package seminario.latest.grails
 
-class ClassifierStrategy {
+import grails.transaction.Transactional
+import seminario.domain.Status
+import seminario.domain.StatusUpdate
+
+@Transactional
+class StatusClassifierService {
 
     def classify(StatusUpdate statusUpdate) {
         // Do some stuff with the status update and reach a prediction with an accuracy.
@@ -25,9 +30,6 @@ class ClassifierStrategy {
             }
         }
         return new Status(maxAccuracy, maxPrediction)
-    }
-
-    static constraints = {
     }
 
 }

@@ -8,6 +8,7 @@ class StatusUpdate {
     String sourceUrl
     Date createdAt
     String body
+    Service service
     User user
 
     static constraints = {
