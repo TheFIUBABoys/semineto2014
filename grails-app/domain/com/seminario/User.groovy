@@ -14,4 +14,9 @@ class User {
     static constraints = {
         username(nullable: false, blank: false, unique: true)
     }
+
+    //"user" is a reserved table in postgre, we need to change this
+    static mapping = {
+        table 'users'
+    }
 }
