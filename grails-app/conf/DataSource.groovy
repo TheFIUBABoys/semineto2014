@@ -1,7 +1,11 @@
+import org.hibernate.dialect.H2Dialect
+import org.hibernate.dialect.PostgreSQLDialect
+
 dataSource {
     pooled = true
-    driverClassName = "com.mysql.jdbc.Driver"
-    dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+    driverClassName = "org.postgresql.Driver"
+    dialect = PostgreSQLDialect
+    //logSql=true
 }
 
 hibernate {
@@ -17,24 +21,27 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create" // one of 'create', 'create-drop','update'
-            url = "jdbc:mysql://localhost/seminario?useUnicode=yes&characterEncoding=UTF-8"
+            dbCreate = "update"
+            url = "jdbc:postgresql://localhost:5432/seminario"
             username = "seminario"
             password = "seminario"
         }
     }
     test {
         dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            dbCreate = "create"
+            driverClassName = "org.h2.Driver"
+            url = "jdbc:h2:mem:testDb"
+
+            username = "sa"
+            password = ""
+            logSql=true
         }
     }
 
     production {
         dataSource {
             dbCreate = "update"
-            driverClassName = "org.postgresql.Driver"
-            dialect = org.hibernate.dialect.PostgreSQL9Dialect
 
             uri = new URI(System.env.DATABASE_URL?:"postgres://vkcxjljvgnurou:u0wrvIcYnhz3YW8MC46gpq_p1_@ec2-54-204-40-96.compute-1.amazonaws.com:5432/d2vnk6ftmepod1")
 
