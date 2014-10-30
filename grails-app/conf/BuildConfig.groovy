@@ -63,9 +63,11 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.7'
         compile ":asset-pipeline:1.9.6"
         compile ':twitter4j:4.0.4.3'
-        compile ":shiro:1.2.1"
+        compile (":shiro:1.2.1") {
+            excludes([name: 'quartz', group: 'org.opensymphony.quartz'])
+        }
         compile ":mysql-connectorj:5.1.22.1"
-        compile ":executor:0.3"
+        compile ":quartz:1.0.2"
 
         //compile ":postgresql-extensions:3.3.0"
         // plugins needed at runtime but not for compilation

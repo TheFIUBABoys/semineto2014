@@ -102,6 +102,7 @@ log4j.main = {
     //appenders {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
+    debug 'grails.app.jobs'
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
@@ -125,3 +126,4 @@ twitter4j {
         OAuthAccessTokenSecret = 'H2qEXs5zJJ8vFhrKBoFxjLWbbp4FIKF4OEYhUg1yDCC6M'
     }
 }
+
