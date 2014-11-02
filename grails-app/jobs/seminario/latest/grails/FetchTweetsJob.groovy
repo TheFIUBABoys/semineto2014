@@ -40,13 +40,17 @@ class FetchTweetsJob {
                 String screenName = data.tweet.getUser().screenName
                 String tweetId = data.tweet.getId()
                 String body = data.tweet.getText()
+                Date createdAt = data.tweet.getCreatedAt()
                 Service currentService = data.service
 
-                def newUpdate = new StatusUpdate('twitter', body, currentService)
-                newUpdate.setSourceId(tweetId)
-                newUpdate.setSourceUrl(TwitterUtils.getTweetUrl(screenName, tweetId))
-                if (!newUpdate.save()) {
-                    log.error ("Fail to save tweet with id: " + data.tweet.getId())
+                if (!StatusUpdate.findBySourceId(tweetId)){
+                    def newUpdate = new StatusUpdate('twitter', body, currentService)
+                    newUpdate.setSourceId(tweetId)
+                    newUpdate.setSourceUrl(TwitterUtils.getTweetUrl(screenName, tweetId))
+                    newUpdate.setSourceDateCreated(createdAt)
+                    if (!newUpdate.save()) {
+                        log.error ("Fail to save tweet with id: " + data.tweet.getId())
+                    }
                 }
             }
 

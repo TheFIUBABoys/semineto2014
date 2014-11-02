@@ -8,6 +8,7 @@ class StatusUpdate {
     String sourceUrl
     String sourceId
     Date dateCreated
+    Date sourceDateCreated
     String body
     Service service
     User user
@@ -24,6 +25,7 @@ class StatusUpdate {
         body(blank: false)
         sourceId(nullable:true)
         sourceUrl(nullable:true)
+        sourceDateCreated(nullable:true)
         user(nullable:true)
     }
 

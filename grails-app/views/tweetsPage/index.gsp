@@ -8,12 +8,18 @@
 
 <div class="row">
     <div class="columns">
-        <g:if test="${positiveTweets.size > negativeTweets.size}">
+        <g:select name="service"
+                  from="${serviceList}"
+                  optionKey="id"
+                  optionValue="name" />
+    </div>
+    <div class="columns">
+        <g:if test="${positiveUpdates.size > negativeUpdates.size}">
             <div class="alert-box success">
                 <i class="fi-arrow-up"> SALE :)</i>
             </div>
         </g:if>
-        <g:if test="${negativeTweets.size >= positiveTweets.size}">
+        <g:if test="${negativeUpdates.size >= positiveUpdates.size}">
             <div class="alert-box warning">
                 <i class="fi-arrow-down"> NO SALE :(</i>
             </div>
@@ -22,23 +28,23 @@
 
     <div class="columns small-6">
         <div class="column-label">Positivo</div>
-        <g:each in="${positiveTweets}" status="i" var="tweet">
+        <g:each in="${positiveUpdates}" status="i" var="update">
             <div class="panel">
-                <a href="http://www.twitter.com/${tweet.user.screenName}">@${tweet.user.screenName}</a> <small>${tweet.user.name}</small>
+                <a href="${update.getSourceUrl()}" target="_blank">Go to Source</a>
                 <br>
-                <small style="color:rgb(128, 124, 124)">${tweet.createdAt}</small>
-                <p>${tweet.text}</p>
+                <small style="color:rgb(128, 124, 124)">${update.getSourceDateCreated()}</small>
+                <p>${update.getBody()}</p>
             </div>
         </g:each>
     </div>
     <div class="columns small-6">
         <div class="column-label">Negativo</div>
-        <g:each in="${negativeTweets}" status="i" var="tweet">
+        <g:each in="${negativeUpdates}" status="i" var="update">
             <div class="panel">
-                <a href="http://www.twitter.com/${tweet.user.screenName}">@${tweet.user.screenName}</a> <small>${tweet.user.name}</small>
+                <a href="{update.getSourceUrl()}"></a> <small>Source</small>
                 <br>
-                <small style="color:rgb(128, 124, 124)">${tweet.createdAt}</small>
-                <p>${tweet.text}</p>
+                <small style="color:rgb(128, 124, 124)">${update.getSourceDateCreated()}</small>
+                <p>${update.getBody()}</p>
             </div>
         </g:each>
     </div>

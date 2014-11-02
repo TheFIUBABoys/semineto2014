@@ -1,35 +1,29 @@
 package seminario.latest.grails
 
+import seminario.domain.Service
 import seminario.domain.StatusUpdate
-import twitter4j.Query
-import twitter4j.Status
 
 class TweetsPageController {
     def twitter4jService
     def statusClassifierService
 
     def index() {
-        def query = new Query("#TrenTigre +exclude:retweets")
-        query.setCount(100)
-        def result = twitter4jService.search(query)
+        def serviceList = Service.findAll()
+        def service = Service.findByName(params.service)
+        def updates = StatusUpdate.findAllByService(service)
 
-        def tweets = result.getTweets().findAll{ tweet->
-            //Only keep past 2 hours of tweets
-            if (tweet.getCreatedAt().after(TimeUtils.subtractHours(new Date(), 10000))) true
-        }
-
-        [positiveTweets: positiveTweets(tweets), negativeTweets: negativeTweets(tweets)]
+        [positiveUpdates: positiveUpdates(updates), negativeUpdates: negativeUpdates(updates), serviceList: serviceList]
     }
 
-    private ArrayList negativeTweets(tweets) {
-        tweets.findAll { tweet ->
-            if (statusClassifierService.negativeScore(new StatusUpdate("twitter", tweet.text.toString())) >= 0.2) true
+    private ArrayList negativeUpdates(updates) {
+        updates.findAll { update ->
+            if (statusClassifierService.negativeScore(update) >= 0.2) true
         }
     }
 
-    private ArrayList positiveTweets(tweets) {
-        tweets.findAll { tweet ->
-            if (statusClassifierService.positiveScore(new StatusUpdate("twitter", tweet.text.toString())) >= 0.5) true
+    private ArrayList positiveUpdates(updates) {
+        updates.findAll { update ->
+            if (statusClassifierService.positiveScore(update) >= 0.5) true
         }
     }
 }
