@@ -6,6 +6,8 @@ class Service {
     ServiceStatus lastStatus
     Date lastStatusTime
 
+    static hasMany = [twKeyword: String]
+
     Service(String name) {
         this.name = name
     }
@@ -21,6 +23,8 @@ class Service {
 
     static constraints = {
         name(blank: false, unique: true)
+        lastStatus(nullable: true)
+        lastStatusTime(nullable: true)
     }
 
 }
