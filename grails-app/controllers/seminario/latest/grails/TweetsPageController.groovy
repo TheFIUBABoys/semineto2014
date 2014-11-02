@@ -15,7 +15,7 @@ class TweetsPageController {
 
         def tweets = result.getTweets().findAll{ tweet->
             //Only keep past 2 hours of tweets
-            if (tweet.getCreatedAt().after(subtractHours(new Date(), 10000))) true
+            if (tweet.getCreatedAt().after(TimeUtils.subtractHours(new Date(), 10000))) true
         }
 
         [positiveTweets: positiveTweets(tweets), negativeTweets: negativeTweets(tweets)]
@@ -31,12 +31,5 @@ class TweetsPageController {
         tweets.findAll { tweet ->
             if (statusClassifierService.positiveScore(new StatusUpdate("twitter", tweet.text.toString())) >= 0.5) true
         }
-    }
-
-    public static Date subtractHours(Date date, Integer hours) {
-        def cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.add(Calendar.HOUR_OF_DAY, - hours);
-        return cal.getTime();
     }
 }

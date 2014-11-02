@@ -27,25 +27,32 @@ class FetchTweetsJob {
                 def result = twitter4jService.search(query)
 
                 def tweets = result.getTweets().findAll { tweet ->
-                    if (tweet.getCreatedAt().after(subtractMinutes(new Date(), 60))) true
+                    if (tweet.getCreatedAt().after(TimeUtils.subtractMinutes(new Date(), 60))) true
                 }
 
-                tweets.each {tweet ->
-                    fetchedTweets.put(tweet.id, tweet)
+                tweets.each { tweet ->
+                    fetchedTweets.put(tweet.id, [tweet: tweet, service: service])
                 }
 
+            }
+
+            fetchedTweets.each() { id, data ->
+                String screenName = data.tweet.getUser().screenName
+                String tweetId = data.tweet.getId()
+                String body = data.tweet.getText()
+                Service currentService = data.service
+
+                def newUpdate = new StatusUpdate('twitter', body, currentService)
+                newUpdate.setSourceId(tweetId)
+                newUpdate.setSourceUrl(TwitterUtils.getTweetUrl(screenName, tweetId))
+                if (!newUpdate.save()) {
+                    log.error ("Fail to save tweet with id: " + data.tweet.getId())
+                }
             }
 
         }
 
         log.info("Job: FetchTweets Finishing")
-    }
-
-    public static Date subtractMinutes(Date date, Integer minutes) {
-        def cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.add(Calendar.MINUTE, - minutes);
-        return cal.getTime();
     }
 
 
