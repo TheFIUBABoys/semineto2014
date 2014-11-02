@@ -11,7 +11,11 @@
         <g:select name="service"
                   from="${serviceList}"
                   optionKey="id"
-                  optionValue="name" />
+                  optionValue="name"
+                  onchange="${remoteFunction(action: 'index',
+                          params: '\'service=\' + this.value',
+                          method: "GET")}"
+          />
     </div>
     <div class="columns">
         <g:if test="${positiveUpdates.size > negativeUpdates.size}">
