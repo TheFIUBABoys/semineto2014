@@ -1,0 +1,16 @@
+<div class="main-page-container">
+    <div class="app-logo"></div>
+    <div class="search-input-container">
+        <input type="text" placeholder="{{StringService.searchPlaceholder}}"/>
+    </div>
+    <div class="top-service-container">
+        <div class="top-service-label">
+            {{StringService.topServiceLabel}}
+        </div>
+        <div class="top-service" ng-repeat="service in topServices">
+            <div class="index">{{$index + 1}}.</div>
+            <div class="name">{{service.label}}</div>
+            <div class="status {{service.status}}"></div>
+        </div>
+    </div>
+</div>
