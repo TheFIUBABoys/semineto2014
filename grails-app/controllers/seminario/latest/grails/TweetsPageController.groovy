@@ -12,7 +12,7 @@ class TweetsPageController {
         def service = Service.findByName("Linea Urquiza") // TODO: Need to fetch the Service in the select
         def updates = StatusUpdate.findAllByService(service)
 
-        [positiveUpdates: positiveUpdates(updates), negativeUpdates: negativeUpdates(updates), serviceList: serviceList]
+        [positiveUpdates: positiveUpdates(updates), negativeUpdates: negativeUpdates(updates), serviceList: serviceList, serviceName: "Linea Urquiza"]
     }
 
     private ArrayList negativeUpdates(updates) {
