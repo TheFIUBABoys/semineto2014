@@ -47,7 +47,7 @@ class StatusClassifierService {
         scoreHelper(statusUpdate, Keyword.findAllByType('down'))
     }
 
-    private scoreHelper(StatusUpdate statusUpdate, List<Keyword> keywords) {
+    def scoreHelper(StatusUpdate statusUpdate, List<Keyword> keywords) {
         keywords.inject(0) { Integer acc, Keyword keyword ->
             if (statusUpdate.body.toLowerCase().count(keyword.phrase) > 0) acc + keyword.score
             else acc

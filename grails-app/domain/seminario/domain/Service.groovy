@@ -1,23 +1,27 @@
 package seminario.domain
 
+import com.seminario.User
+
 class Service {
 
     String name
     ServiceStatus lastStatus
     Date lastStatusTime
 
-    static hasMany = [twKeyword: String]
+    //Belongs to is for many to many relations
+    static belongsTo = User
+    static hasMany = [twKeyword: String, subscriptor: User]
 
     Service(String name) {
         this.name = name
     }
 
-    def updateStatus (ServiceStatus serviceStatus) {
+    def updateStatus(ServiceStatus serviceStatus) {
         lastStatus = serviceStatus
         lastStatusTime = new Date()
     }
 
-    def retrieveCurrentStatus () {
+    def retrieveCurrentStatus() {
         return lastStatus
     }
 

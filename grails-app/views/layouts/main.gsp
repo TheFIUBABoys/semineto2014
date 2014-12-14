@@ -53,12 +53,18 @@
             </shiro:isNotLoggedIn>
             <li>
                 <shiro:isLoggedIn>
+
                     <g:link controller="auth" action="signOut">Logout</g:link>
                 </shiro:isLoggedIn>
                 <shiro:isNotLoggedIn>
                     <g:link controller="auth" action="index">Login</g:link>
                 </shiro:isNotLoggedIn>
             </li>
+        <li>
+            <shiro:isLoggedIn>
+                <g:link controller="subscribe">Subscripciones</g:link>
+            </shiro:isLoggedIn>
+        </li>
             <li class="active"><a href="#">Feedback</a></li>
             <li class="has-dropdown">
                 <a href="#">About Us <i class="step fi-info"></i></a>
@@ -83,10 +89,11 @@
             <li>
                 <a href="<g:createLink controller="tweetsPage"/>">Lista de tweets</a>
             </li>
+
             <li>
-                <g:link controller="informationChannel" action="show"
-                        params="[keywords:['#TrenTigre', 'tren tigre']]">Show channel</g:link>
-            </li>
+            <g:link controller="informationChannel" action="show"
+                    params="[keywords:['#TrenTigre', 'tren tigre']]">Show channel</g:link>
+        </li>
         </ul>
     </section>
 </nav>
