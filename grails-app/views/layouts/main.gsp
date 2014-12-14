@@ -43,7 +43,7 @@
         <ul class="right">
             <shiro:isLoggedIn>
                 <li>
-                    <div class="user-welcome">Welcome, <span class="username"><shiro:principal/></span></div>
+                    <a href="#"><div class="user-welcome">Welcome, <span class="username"><shiro:principal/></span></div></a>|
                 </li>
             </shiro:isLoggedIn>
             <shiro:isNotLoggedIn>
