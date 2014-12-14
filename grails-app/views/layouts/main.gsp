@@ -43,7 +43,7 @@
         <ul class="right">
             <shiro:isLoggedIn>
                 <li>
-                    <div class="user-welcome">Welcome, <span class="username"><shiro:principal/></span></div>
+                    <a href="#"><div class="user-welcome">Welcome, <span class="username"><shiro:principal/></span></div></a>
                 </li>
             </shiro:isLoggedIn>
             <shiro:isNotLoggedIn>
@@ -154,6 +154,9 @@
 <script src="${resource(dir: 'js', file: 'foundation.min.js')}"></script>
 <script>
     $(document).foundation();
+</script>
+<script type="text/javascript">
+    window.twttr=(function(d,s,id){var t,js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);return window.twttr||(t={_e:[],ready:function(f){t._e.push(f)}})}(document,"script","twitter-wjs"));
 </script>
 </body>
 </html>

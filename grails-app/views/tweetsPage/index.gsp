@@ -3,6 +3,8 @@
 <head>
     <meta name="layout" content="main">
     <title>EsteSale?</title>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'partials/tweetPage.css')}" type="text/css">
+
 </head>
 <body>
 
@@ -21,11 +23,13 @@
         <g:if test="${positiveUpdates.size > negativeUpdates.size}">
             <div class="alert-box success">
                 <i class="fi-arrow-up"> SALE :)</i>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://estesale.com.ar" data-text="${serviceName}, Sale!" data-hashtags="EsteSale">Tweet</a>
             </div>
         </g:if>
         <g:if test="${negativeUpdates.size >= positiveUpdates.size}">
             <div class="alert-box warning">
                 <i class="fi-arrow-down"> NO SALE :(</i>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://estesale.com.ar" data-text="${serviceName}, No Sale!" data-hashtags="EsteSale">Tweet</a>
             </div>
         </g:if>
     </div>
