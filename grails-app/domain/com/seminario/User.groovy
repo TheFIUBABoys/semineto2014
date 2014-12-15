@@ -1,5 +1,6 @@
 package com.seminario
 
+import seminario.domain.PredictionRating
 import seminario.domain.Service
 
 class User {
@@ -11,7 +12,7 @@ class User {
         this.passwordHash = passwordHash
     }
 
-    static hasMany = [ roles: Role, permissions: String, following: Service ]
+    static hasMany = [ roles: Role, permissions: String, following: Service, predictionRatings: PredictionRating ]
 
     static constraints = {
         username(nullable: false, blank: false, unique: true)

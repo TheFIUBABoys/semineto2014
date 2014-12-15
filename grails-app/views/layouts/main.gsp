@@ -87,7 +87,7 @@
                 <a href="#">Favoritos <i class="step fi-heart"></i></a>
             </li>
             <li>
-                <a href="<g:createLink controller="tweetsPage"/>">Lista de tweets</a>
+                <a href="<g:createLink controller="prediction"/>">Lista de tweets</a>
             </li>
 
             <li>

@@ -3,7 +3,7 @@ package seminario.latest.grails
 import seminario.domain.Service
 import seminario.domain.StatusUpdate
 
-class TweetsPageController {
+class PredictionController {
     def twitter4jService
     def statusClassifierService
 

@@ -2,6 +2,7 @@ import com.seminario.User
 import grails.transaction.Transactional
 import org.apache.shiro.crypto.hash.Sha256Hash
 import seminario.domain.Keyword
+import seminario.domain.PredictionRating
 import seminario.domain.Service
 
 @Transactional
@@ -115,6 +116,7 @@ class BootStrap {
         createUser()
         createKeyWords()
         createBaseServices()
+        new PredictionRating(comment:"Testerino", isPositive: true).save();
     }
 
     def destroy = {

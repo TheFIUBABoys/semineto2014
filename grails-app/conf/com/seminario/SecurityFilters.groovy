@@ -19,5 +19,11 @@ class SecurityFilters {
                 accessControl()
             }
         }
+        //Ignore filters for API
+        api(uri:"/api/**"){
+            before ={
+                true
+            }
+        }
     }
 }
