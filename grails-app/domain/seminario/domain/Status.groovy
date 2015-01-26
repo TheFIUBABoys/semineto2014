@@ -3,9 +3,9 @@ package seminario.domain
 class Status {
 
     Integer accuracy
-    String prediction
+    StatusValue prediction
 
-    Status(Integer accuracy, String prediction) {
+    Status(Integer accuracy, StatusValue prediction) {
         this.accuracy = accuracy
         this.prediction = prediction
     }
@@ -14,4 +14,9 @@ class Status {
         prediction(blank: false)
     }
 
+}
+
+enum StatusValue{
+    StatusValueUp,
+    StatusValueDown
 }

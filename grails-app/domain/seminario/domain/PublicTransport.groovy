@@ -5,7 +5,7 @@ import com.seminario.User
 class PublicTransport {
 
     String name
-    ServiceStatus lastStatus
+    ServiceStatus mostRecentStatus
     Date lastStatusTime
 
     //Belongs to is for many to many relations
@@ -17,17 +17,21 @@ class PublicTransport {
     }
 
     def updateStatus(ServiceStatus serviceStatus) {
-        lastStatus = serviceStatus
+        mostRecentStatus = serviceStatus
         lastStatusTime = new Date()
     }
 
     def retrieveCurrentStatus() {
-        return lastStatus
+        return mostRecentStatus
+    }
+
+    def isOnline(){
+        return mostRecentStatus.status.prediction.equals(StatusValue.StatusValueUp)
     }
 
     static constraints = {
         name(blank: false, unique: true)
-        lastStatus(nullable: true)
+        mostRecentStatus(nullable: true)
         lastStatusTime(nullable: true)
     }
 

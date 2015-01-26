@@ -4,6 +4,7 @@ import grails.transaction.Transactional
 import seminario.domain.Keyword
 import seminario.domain.Status
 import seminario.domain.StatusUpdate
+import seminario.domain.StatusValue
 
 @Transactional
 class StatusClassifierService {
@@ -13,7 +14,7 @@ class StatusClassifierService {
         Integer negativeScore = negativeScore(statusUpdate)
 
         Integer accuracy = positiveScore >= negativeScore ? positiveScore : negativeScore
-        String prediction = positiveScore >= negativeScore ? 'up' : 'down'
+        String prediction = positiveScore >= negativeScore ? StatusValue.StatusValueUp :StatusValue.StatusValueDown
 
         // Do some stuff with the status update and reach a prediction with an accuracy.
         return new Status(accuracy, prediction)
