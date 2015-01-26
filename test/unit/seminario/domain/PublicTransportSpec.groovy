@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(Service)
-class ServiceSpec extends Specification {
+@TestFor(PublicTransport)
+class PublicTransportSpec extends Specification {
 
     def setup() {
     }
@@ -16,5 +16,7 @@ class ServiceSpec extends Specification {
     }
 
     void "test something"() {
+        when: 'the name begins with a lower letter'
+        then: 'validation should fail'
     }
 }

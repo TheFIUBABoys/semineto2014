@@ -1,6 +1,6 @@
 package seminario.latest.grails
 
-import seminario.domain.Service
+import seminario.domain.PublicTransport
 import seminario.domain.StatusUpdate
 
 class PredictionController {
@@ -8,8 +8,8 @@ class PredictionController {
     def statusClassifierService
 
     def index() {
-        def serviceList = Service.findAll()
-        def service = Service.findByName("Linea Urquiza") // TODO: Need to fetch the Service in the select
+        def serviceList = PublicTransport.findAll()
+        def service = PublicTransport.findByName("Linea Urquiza") // TODO: Need to fetch the Service in the select
         def updates = StatusUpdate.findAllByService(service)
 
         [positiveUpdates: positiveUpdates(updates), negativeUpdates: negativeUpdates(updates), serviceList: serviceList, serviceName: "Linea Urquiza"]

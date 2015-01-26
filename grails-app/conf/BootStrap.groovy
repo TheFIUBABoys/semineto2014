@@ -3,7 +3,7 @@ import grails.transaction.Transactional
 import org.apache.shiro.crypto.hash.Sha256Hash
 import seminario.domain.Keyword
 import seminario.domain.PredictionRating
-import seminario.domain.Service
+import seminario.domain.PublicTransport
 
 @Transactional
 class BootStrap {
@@ -63,49 +63,49 @@ class BootStrap {
     }
 
     def createBaseServices = {
-        def trenTigre = Service.findByName('Linea Mitre Ramal Tigre')
+        def trenTigre = PublicTransport.findByName('Linea Mitre Ramal Tigre')
         if (!trenTigre) {
-            trenTigre = new Service('Linea Mitre Ramal Tigre')
+            trenTigre = new PublicTransport('Linea Mitre Ramal Tigre')
         }
         trenTigre.addToTwKeyword('#TrenTigre')
         trenTigre.addToTwKeyword('tren tigre')
         trenTigre.save(failOnError: true);
 
-        def trenSuarez = Service.findByName('Linea Mitre Ramal Suarez')
+        def trenSuarez = PublicTransport.findByName('Linea Mitre Ramal Suarez')
         if (!trenSuarez) {
-            trenSuarez = new Service('Linea Mitre Ramal Suarez')
+            trenSuarez = new PublicTransport('Linea Mitre Ramal Suarez')
         }
         trenSuarez.addToTwKeyword('#TrenSuarez')
         trenSuarez.addToTwKeyword('tren suarez')
         trenSuarez.save(failOnError: true);
 
-        def trenMitre = Service.findByName('Linea Mitre Ramal Mitre')
+        def trenMitre = PublicTransport.findByName('Linea Mitre Ramal Mitre')
         if (!trenMitre) {
-            trenMitre = new Service('Linea Mitre Ramal Mitre')
+            trenMitre = new PublicTransport('Linea Mitre Ramal Mitre')
         }
         trenMitre.addToTwKeyword('#TrenMitre')
         trenMitre.addToTwKeyword('tren mitre')
         trenMitre.save(failOnError: true);
 
-        def trenBelgranoNorte = Service.findByName('Linea Belgrano Norte')
+        def trenBelgranoNorte = PublicTransport.findByName('Linea Belgrano Norte')
         if (!trenBelgranoNorte) {
-            trenBelgranoNorte = new Service('Linea Belgrano Norte')
+            trenBelgranoNorte = new PublicTransport('Linea Belgrano Norte')
         }
         trenBelgranoNorte.addToTwKeyword('#TrenBelgrano')
         trenBelgranoNorte.addToTwKeyword('tren belgrano')
         trenBelgranoNorte.save(failOnError: true);
 
-        def trenSanMartin = Service.findByName('Linea San Martin')
+        def trenSanMartin = PublicTransport.findByName('Linea San Martin')
         if (!trenSanMartin) {
-            trenSanMartin = new Service('Linea San Martin')
+            trenSanMartin = new PublicTransport('Linea San Martin')
         }
         trenSanMartin.addToTwKeyword('#TrenSanMartion')
         trenSanMartin.addToTwKeyword('tren san martin')
         trenSanMartin.save(failOnError: true);
 
-        def trenUrquiza = Service.findByName('Linea Urquiza')
+        def trenUrquiza = PublicTransport.findByName('Linea Urquiza')
         if (!trenUrquiza) {
-            trenUrquiza = new Service('Linea Urquiza')
+            trenUrquiza = new PublicTransport('Linea Urquiza')
         }
         trenUrquiza.addToTwKeyword('#TrenUrquiza')
         trenUrquiza.addToTwKeyword('tren urquiza')

@@ -3,7 +3,7 @@ package seminario.latest.grails
 import com.seminario.User
 import grails.transaction.Transactional
 import org.apache.shiro.SecurityUtils
-import seminario.domain.Service
+import seminario.domain.PublicTransport
 
 @Transactional
 class UserService {
@@ -17,7 +17,7 @@ class UserService {
 
     def getSubscriptions(){
         def user = this.getLocalUser()
-        Service.withCriteria {
+        PublicTransport.withCriteria {
             subscriptor {
                 eq('id', user.id)
             }

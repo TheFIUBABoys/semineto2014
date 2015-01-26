@@ -1,6 +1,6 @@
 package seminario.latest.grails
 
-import seminario.domain.Service
+import seminario.domain.PublicTransport
 import seminario.domain.StatusUpdate
 import twitter4j.Query
 
@@ -15,7 +15,7 @@ class FetchTweetsJob {
     def execute() {
         log.info("Job: FetchTweets Starting")
         // For each Service:
-        def allServices = Service.getAll();
+        def allServices = PublicTransport.getAll();
         allServices.each() { service ->
             // Get their twKeywords
             def keyWords = service.twKeyword
@@ -41,7 +41,7 @@ class FetchTweetsJob {
                 String tweetId = data.tweet.getId()
                 String body = data.tweet.getText()
                 Date createdAt = data.tweet.getCreatedAt()
-                Service currentService = data.service
+                PublicTransport currentService = data.service
 
                 if (!StatusUpdate.findBySourceId(tweetId)){
                     def newUpdate = new StatusUpdate('twitter', body, currentService)

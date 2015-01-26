@@ -1,7 +1,7 @@
 package seminario.latest.grails
 
 import grails.transaction.Transactional
-import seminario.domain.Service
+import seminario.domain.PublicTransport
 
 class SubscribeController {
     def userService
@@ -11,7 +11,7 @@ class SubscribeController {
     def index() {
         def subscribedServiceList = userService.getSubscriptions()
 
-        def allServices = Service.findAll()
+        def allServices = PublicTransport.findAll()
         for (service in allServices) {
             if (service in subscribedServiceList) {
                 allServicesMap.put(service.name, true)
@@ -41,9 +41,9 @@ class SubscribeController {
         def user = userService.getLocalUser()
         allServicesMap.each { key, value ->
             if (value) {
-                user.addToFollowing(Service.findByName(key))
+                user.addToFollowing(PublicTransport.findByName(key))
             } else {
-                user.removeFromFollowing(Service.findByName(key))
+                user.removeFromFollowing(PublicTransport.findByName(key))
             }
         }
     }

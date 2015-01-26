@@ -2,7 +2,7 @@ package seminario.domain
 
 import com.seminario.User
 
-class Service {
+class PublicTransport {
 
     String name
     ServiceStatus lastStatus
@@ -12,7 +12,7 @@ class Service {
     static belongsTo = User
     static hasMany = [twKeyword: String, subscriptor: User]
 
-    Service(String name) {
+    PublicTransport(String name) {
         this.name = name
     }
 

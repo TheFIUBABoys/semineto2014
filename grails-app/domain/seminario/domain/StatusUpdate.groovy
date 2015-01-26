@@ -10,10 +10,10 @@ class StatusUpdate {
     Date dateCreated
     Date sourceDateCreated
     String body
-    Service service
+    PublicTransport service
     User user
 
-    StatusUpdate(String sourceType, String body, Service service) {
+    StatusUpdate(String sourceType, String body, PublicTransport service) {
         this.sourceType = sourceType
         this.body = body
         this.service = service

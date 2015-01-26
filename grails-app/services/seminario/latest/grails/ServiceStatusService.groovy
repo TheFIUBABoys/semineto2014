@@ -1,7 +1,7 @@
 package seminario.latest.grails
 
 import grails.transaction.Transactional
-import seminario.domain.Service
+import seminario.domain.PublicTransport
 import seminario.domain.ServiceStatus
 import seminario.domain.Status
 import seminario.domain.StatusUpdate
@@ -16,7 +16,7 @@ class ServiceStatusService {
         return super.getProperty(property)
     }
 
-    def determineStatus (Service service, Date sinceDate) {
+    def determineStatus (PublicTransport service, Date sinceDate) {
         List<StatusUpdate> statusUpdates = StatusUpdate.findAllByCreatedAtGreaterThanEqualsAndService(sinceDate, service)
 
         Status status = statusClassifierService.classify(statusUpdates)
