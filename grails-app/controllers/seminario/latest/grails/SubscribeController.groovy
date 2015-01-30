@@ -5,12 +5,10 @@ import seminario.domain.PublicTransport
 
 class SubscribeController {
     def userService
-
     def allServicesMap = new HashMap<String, Boolean>()
 
     def index() {
         def subscribedServiceList = userService.getSubscriptions()
-
         def allServices = PublicTransport.findAll()
         for (service in allServices) {
             if (service in subscribedServiceList) {
@@ -19,7 +17,6 @@ class SubscribeController {
                 allServicesMap.put(service.name, false)
             }
         }
-
         [allServices: allServicesMap]
     }
 

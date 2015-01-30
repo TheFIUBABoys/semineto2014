@@ -25,8 +25,12 @@ class PublicTransport {
         return mostRecentStatus
     }
 
+    def getNextUpdatedStatus(List<StatusUpdate> statusUpdates){
+        //TODO - Considering the received statuses and the current one, return a new updated status.
+    }
+
     def isOnline(){
-        return mostRecentStatus.status.prediction.equals(StatusValue.StatusValueUp)
+        return mostRecentStatus.status.prediction.equals(Status.StatusValue.StatusValueUp)
     }
 
     static constraints = {

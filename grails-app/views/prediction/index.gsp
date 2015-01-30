@@ -11,13 +11,15 @@
 
 <div class="row">
     <div class="columns">
-        <g:select name="service"
-                  from="${serviceList}"
-                  optionKey="id"
-                  optionValue="name"
-                  onchange="${remoteFunction(action: 'index',
-                          params: '\'service=\' + this.value',
-                          method: "GET")}"/>
+        <g:form action="showService">
+            <g:select name="service"
+                      value="${serviceId}"
+                      from="${serviceList}"
+                      optionKey="id"
+                      optionValue="name"
+                      onchange="submit()"
+            />
+        </g:form>
     </div>
 
     <div class="columns">

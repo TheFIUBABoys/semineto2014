@@ -6,13 +6,32 @@ import seminario.domain.StatusUpdate
 class PredictionController {
     def twitter4jService
     def statusClassifierService
+    def userService
+    def serviceList
 
     def index() {
-        def serviceList = PublicTransport.findAll()
-        def service = PublicTransport.findByName("Linea Urquiza") // TODO: Need to fetch the Service in the select
-        def updates = StatusUpdate.findAllByService(service)
+        serviceList = userService.getLocalUser().getFollowing()
+        def selectedServiceId = params.serviceId
+        if (!selectedServiceId) {
+            selectedServiceId = serviceList[0].getId()
+        }
+        def serviceList = userService.getLocalUser().getFollowing()
+        def publicTransport = PublicTransport.findById(selectedServiceId)
+        def updates = StatusUpdate.findAllByService(publicTransport)
+        [positiveUpdates: positiveUpdates(updates),
+         negativeUpdates: negativeUpdates(updates),
+         serviceList: serviceList,
+         serviceName:publicTransport.getName(),
+         serviceId: selectedServiceId]
 
-        [positiveUpdates: positiveUpdates(updates), negativeUpdates: negativeUpdates(updates), serviceList: serviceList, serviceName: "Linea Urquiza"]
+    }
+
+    def showService(){
+        def selectedServiceId = params.service
+        if (!selectedServiceId) {
+            selectedServiceId = serviceList[0].getId()
+        }
+        redirect(action: 'index', params: [serviceId : selectedServiceId])
     }
 
     private ArrayList negativeUpdates(updates) {
