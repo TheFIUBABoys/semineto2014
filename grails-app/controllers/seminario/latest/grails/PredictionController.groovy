@@ -17,7 +17,7 @@ class PredictionController {
         }
         def serviceList = userService.getLocalUser().getFollowing()
         def publicTransport = PublicTransport.findById(selectedServiceId)
-        def updates = StatusUpdate.findAllByService(publicTransport)
+        def updates = StatusUpdate.findAllByTransport(publicTransport)
         [positiveUpdates: positiveUpdates(updates),
          negativeUpdates: negativeUpdates(updates),
          serviceList: serviceList,

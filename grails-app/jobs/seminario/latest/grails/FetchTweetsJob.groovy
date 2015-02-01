@@ -14,6 +14,11 @@ class FetchTweetsJob {
 
     def execute() {
         log.info("Job: FetchTweets Starting")
+        /*
+        Este metodo es una cagada por:
+         - No nos interesa para NADA guardar los tweets una vez que los usamos para predecir.
+         - No tiene en cuenta para nada el peso de las keywords.
+         */
         // For each Service:
         def allServices = PublicTransport.getAll();
         allServices.each() { service ->

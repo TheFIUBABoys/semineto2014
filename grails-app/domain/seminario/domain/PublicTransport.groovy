@@ -10,7 +10,7 @@ class PublicTransport {
 
     //Belongs to is for many to many relations
     static belongsTo = User
-    static hasMany = [twKeyword: String, subscriptor: User]
+    static hasMany = [twKeyword: String, subscriptor: User, stations: Station]
 
     PublicTransport(String name) {
         this.name = name

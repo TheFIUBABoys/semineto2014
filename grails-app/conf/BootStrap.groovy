@@ -19,7 +19,7 @@ class BootStrap {
                 "no sale" : 10,
                 "clavado"  : 10,
                 "porqueria"  : 10,
-                "porquería"  : 10,
+                "interrumpido"  : 10,
                 "detenida"  : 10,
                 "parado"  : 10,
                 "demorado": 2,
@@ -37,17 +37,15 @@ class BootStrap {
         ]
 
         def upKeywords = [
-                "en horario": 5,
+                "a horario": 5,
                 "bien": 3,
                 "perfecto": 5,
-                "rapido": 3,
                 "rápido": 3,
                 "servicio normal": 10,
                 "te amo": 10,
-                "bienvenido al grp comunidad": -100,
                 "saliendo"  : 2,
                 "viajando"  : 4,
-                "no me puedo quejar"  : 10,
+                "no me puedo quejar"  : 3,
                 "llegando"  : 3
         ]
 

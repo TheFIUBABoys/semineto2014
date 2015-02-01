@@ -58,7 +58,7 @@
         <div class="column-label">Negativo</div>
         <g:each in="${negativeUpdates}" status="i" var="update">
             <div class="panel">
-                <a href="{update.getSourceUrl()}"></a> <small>Source</small>
+                <a href="${update.getSourceUrl()}"></a> <small>Source</small>
                 <br>
                 <small style="color:rgb(128, 124, 124)">${update.getSourceDateCreated()}</small>
 
