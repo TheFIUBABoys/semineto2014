@@ -1,19 +1,19 @@
-package seminario.domain
+package seminario.latest.grails
 
-import grails.test.mixin.TestFor
-import grails.test.spock.IntegrationSpec
-import spock.lang.Specification
+import seminario.domain.StatusUpdate
+import spock.lang.*
 
 /**
- * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
+ *
  */
-class StatusUpdateSpec extends IntegrationSpec {
+class StatusUpdateKeywordSpec extends Specification {
 
     def setup() {
     }
 
     def cleanup() {
     }
+
 
     void "test rating positive"() {
         when:

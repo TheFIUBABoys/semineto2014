@@ -4,7 +4,6 @@ import grails.transaction.Transactional
 import seminario.domain.Keyword
 import seminario.domain.Status
 import seminario.domain.StatusUpdate
-import seminario.domain.StatusValue
 
 @Transactional
 class StatusClassifierService {

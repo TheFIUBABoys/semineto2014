@@ -3,7 +3,7 @@ import org.hibernate.dialect.PostgreSQLDialect
 
 dataSource {
     pooled = true
-    driverClassName = "org.postgresql.Driver"
+
     dialect = PostgreSQLDialect
     //logSql=true
 }
@@ -21,28 +21,29 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "update"
+            dbCreate = "create-drop"
             url = "jdbc:postgresql://localhost:5432/seminario"
+            driverClassName = "org.postgresql.Driver"
             username = "seminario"
             password = "seminario"
         }
     }
     test {
         dataSource {
-            dbCreate = "create"
-            driverClassName = "org.h2.Driver"
-            url = "jdbc:h2:mem:testDb"
-
-            username = "sa"
-            password = ""
-            logSql=true
+            dataSource {
+                dbCreate = "create-drop"
+                driverClassName = "org.h2.Driver"
+                url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+                username = "sa"
+                password = ""
+            }
         }
     }
 
     production {
         dataSource {
             dbCreate = "update"
-
+            driverClassName = "org.postgresql.Driver"
             uri = new URI(System.env.DATABASE_URL?:"postgres://vkcxjljvgnurou:u0wrvIcYnhz3YW8MC46gpq_p1_@ec2-54-204-40-96.compute-1.amazonaws.com:5432/d2vnk6ftmepod1")
 
             url = "jdbc:postgresql://"+uri.host+uri.path

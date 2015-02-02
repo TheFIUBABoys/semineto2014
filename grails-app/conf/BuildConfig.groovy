@@ -50,7 +50,7 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         //runtime 'mysql:mysql-connector-java:5.1.29'
         runtime 'postgresql:postgresql:8.4-702.jdbc3'
-        test "org.hsqldb:hsqldb:2.0.0"
+
         test "org.grails:grails-datastore-test-support:1.0-grails-2.4"
     }
 
@@ -74,8 +74,6 @@ grails.project.dependency.resolution = {
         runtime ":hibernate4:4.3.5.5" // or ":hibernate:3.6.10.17"
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
-
-
 
 
         // Uncomment these to enable additional asset-pipeline capabilities
